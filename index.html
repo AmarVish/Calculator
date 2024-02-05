@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+  
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+    <style>
+        input {
+            width: 50px;
+            height: 50px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body class="bg-light">
+    <div class="container text-center">
+        <h2 class="mt-4 text-light">Calculator</h2>
+        <table class="table table-bordered mt-4">
+            <tr>
+                <td colspan="4"><input type="text" id="display" class="form-control badge-pill" disabled></td>
+            </tr>
+            <tr>
+                <td><input type="button" value="7" onclick="appendToDisplay('7')" class="btn btn-secondary rounded-circle"></td>
+                <td><input type="button" value="8" onclick="appendToDisplay('8')" class="btn btn-secondary rounded-circle"></td>
+                <td><input type="button" value="9" onclick="appendToDisplay('9')" class="btn btn-secondary rounded-circle"></td>
+                <td><input type="button" value="*" onclick="appendToDisplay('*')" class="btn btn-primary rounded-circle"></td>
+                
+            </tr>
+            <tr>
+                <td><input type="button" value="4" onclick="appendToDisplay('4')" class="btn btn-secondary rounded-circle"></td>
+                <td><input type="button" value="5" onclick="appendToDisplay('5')" class="btn btn-secondary rounded-circle"></td>
+                <td><input type="button" value="6" onclick="appendToDisplay('6')" class="btn btn-secondary rounded-circle"></td>
+                <td><input type="button" value="/" onclick="appendToDisplay('/')" class="btn btn-primary rounded-circle"></td>
+                
+            </tr>
+            <tr>
+                <td><input type="button" value="1" onclick="appendToDisplay('1')" class="btn btn-secondary rounded-circle"></td>
+                <td><input type="button" value="2" onclick="appendToDisplay('2')" class="btn btn-secondary rounded-circle"></td>
+                <td><input type="button" value="3" onclick="appendToDisplay('3')" class="btn btn-secondary rounded-circle"></td>
+                <td><input type="button" value="-" onclick="appendToDisplay('-')" class="btn btn-primary rounded-circle"></td>
+                
+            </tr>
+            <tr>
+                <td><input type="button" value="0" onclick="appendToDisplay('0')" class="btn btn-secondary rounded-circle"></td>
+                <td><input type="button" value="." onclick="appendToDisplay('.')" class="btn btn-secondary rounded-circle"></td>
+                <td><input type="button" value="=" onclick="calculate()" class="btn btn-success rounded-circle"></td>
+                <td><input type="button" value="+" onclick="appendToDisplay('+')" class="btn btn-primary rounded-circle"></td>
+                
+            </tr>
+            <tr>
+                <td><button type="button" onclick="backspace()" class="btn btn-warning rounded-circle"><i class="bi bi-backspace"></i></button></td>
+                <td><input type="button" value="C" onclick="clearDisplay()" class="btn btn-danger rounded-circle"></td>
+            </tr>
+        </table>
+    </div>
+    
+
+    <script>
+    function appendToDisplay(value) {
+      var display = document.getElementById('display');
+      var lastChar = display.value.charAt(display.value.length - 1);
+    
+      // Check if the last character is an operator
+      if (isOperator(lastChar)) {
+        // Check if the current value is not an operator
+        if (!isOperator(value)) {
+          // Append the value to the display
+          display.value += value;
+        }
+      } else {
+        // Append the value to the display
+        display.value += value;
+      }
+    }
+    
+    function calculate() {
+      try {
+        document.getElementById('display').value = eval(document.getElementById('display').value);
+      } catch (error) {
+        document.getElementById('display').value = 'Error';
+      }
+    }
+    
+    function clearDisplay() {
+      document.getElementById('display').value = '';
+    }
+    
+    function backspace() {
+      var display = document.getElementById('display');
+      display.value = display.value.slice(0, -1);
+    }
+    
+    // Helper function to check if a character is an operator
+    function isOperator(char) {
+      return ['+', '-', '*', '/'].includes(char);
+    }
+    </script>
+    <footer class="text-center mb-5">
+      <p class="mt-5">2024 Developed by <a href="https://github.com/AmarVish" class="text-blue-600">AV</a>.</p>
+    </footer>
+</body>
+</html>
